@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             FileInputStream fileIn = openFileInput("mytextfile.txt");
             InputStreamReader InputRead = new InputStreamReader(fileIn);
             char[] inputBuffer = new char[READ_BLOCK_SIZE];
-            String s=""; int charRead;
+            String s = ""; int charRead;
 
             while ((charRead = InputRead.read(inputBuffer))>0) {
                 // char to string conversion
@@ -75,6 +76,18 @@ public class MainActivity extends AppCompatActivity {
             InputRead.close();
             mainView.setText(s);
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void DeleteBtn(View v) {
+        // delete file
+        try {
+            String dir = getFilesDir().getAbsolutePath();
+            mainView.setText(dir);
+            File file = new File(dir, "mytextfile.txt");
+            file.delete();
         } catch (Exception e) {
             e.printStackTrace();
         }

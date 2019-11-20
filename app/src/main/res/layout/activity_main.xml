@@ -32,5 +32,12 @@
         android:onClick="ReadBtn"
         android:text="Read Text from File" />
 
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="DeleteBtn"
+        android:text="Delete File" />
+
 
 </LinearLayout>
