@@ -51,7 +51,12 @@ public class MainActivity extends AppCompatActivity {
     public void WriteBtn(View v) {
         // add-write text into file
         try {
-            FileOutputStream fileout = openFileOutput("mytextfile.txt", MODE_PRIVATE);
+            File sdcard=Environment.getExternalStorageDirectory();
+            File dir=new File(sdcard.getAbsolutePath()+"/MyFiles");
+            dir.mkdirs();
+            File file=new File(dir,"mytextfile.txt");
+            FileOutputStream fOut = new FileOutputStream(file);
+            //FileOutputStream fileout = openFileOutput("mytextfile.txt", MODE_PRIVATE);
             OutputStreamWriter outputWriter = new OutputStreamWriter(fileout);
             outputWriter.write(textmsg.getText().toString());
             outputWriter.close();
@@ -63,8 +68,13 @@ public class MainActivity extends AppCompatActivity {
     public void ReadBtn(View v) {
         //reading text from file
         try {
-            FileInputStream fileIn = openFileInput("mytextfile.txt");
-            InputStreamReader InputRead = new InputStreamReader(fileIn);
+            File sdcard= Environment.getExternalStorageDirectory();
+            File dir=new File(sdcard.getAbsolutePath()+"/MyFiles");
+            File file=new File(dir,"mytextfile.txt");
+            FileInputStream fileIn = new FileInputStream(file);
+            InputStreamReader InputRead =new InputStreamReader(fileIn);
+            //FileInputStream fileIn = openFileInput("mytextfile.txt");
+            //InputStreamReader InputRead = new InputStreamReader(fileIn);
             char[] inputBuffer = new char[READ_BLOCK_SIZE];
             String s = ""; int charRead;
 
